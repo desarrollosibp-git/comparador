@@ -83,7 +83,7 @@ comparador/
 ## Requisitos
 
 - Docker Desktop (o Docker Engine + Compose)
-- Puerto `8001` libre (API)
+- Puerto `8002` libre (API)
 - Puerto `6379` libre (Redis)
 
 ---
@@ -134,7 +134,7 @@ docker compose down
 
 Base URL local:
 
-`http://localhost:8001`
+`http://localhost:8002`
 
 ### 1) Match sincronico
 
@@ -150,7 +150,7 @@ Uso recomendado:
 Ejemplo:
 
 ```bash
-curl -X POST "http://localhost:8001/match" \
+curl -X POST "http://localhost:8002/match" \
   -H "Content-Type: application/json" \
   -d '{
     "dataA": [
@@ -191,7 +191,7 @@ Respuesta:
 Ejemplo:
 
 ```bash
-curl -X POST "http://localhost:8001/jobs/match" \
+curl -X POST "http://localhost:2/jobs/match" \
   -H "Content-Type: application/json" \
   -H "Idempotency-Key: req-12345" \
   -H "X-Request-Id: req-12345" \
@@ -221,7 +221,7 @@ Respuesta:
 Ejemplo:
 
 ```bash
-curl -X GET "http://localhost:8001/jobs/job_xxx" \
+curl -X GET "http://localhost:8002/jobs/job_xxx" \
   -H "Authorization: Bearer TU_TOKEN"
 ```
 
@@ -290,7 +290,7 @@ docker compose logs --tail 200 matcher-worker
 ```
 
 Validaciones basicas:
-- API viva en `http://localhost:8001/docs`
+- API viva en `http://localhost:8002/docs`
 - Redis healthy
 - Worker con tarea registrada:
   - debe aparecer `matcher.run_match_job` en logs de arranque de Celery.
